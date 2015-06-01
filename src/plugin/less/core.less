@@ -1,0 +1,73 @@
+@keyframes weekBounceIn {
+	0%, 50%, 100% {
+		transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+	}
+
+	0% {
+		opacity: 0.5;
+		transform: scale3d(.8, .8, .8);
+	}
+
+	50% {
+		opacity: 1;
+		transform: scale3d(1.1, 1.1, 1.1);
+	}
+
+	100% {
+		opacity: 1;
+		transform: scale3d(1, 1, 1);
+	}
+}
+.weeks {
+	* {
+		box-sizing: border-box;
+	}
+	box-sizing: border-box;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #0b4046;
+	color: #fff;
+	input {
+		box-sizing: border-box;
+		border-radius: 0;
+		width: 100%;
+		border: none;
+		outline: none;
+		-webkit-appearance: none;
+		background-color: transparent;
+		color: #fff;
+		line-height: 1;
+	}
+	.week-content {
+		width: 100%;
+		flex: none;
+		text-align: center;
+		.week-week {
+			display: block;
+			box-sizing: border-box;
+			margin: 0;
+			padding: 0;
+			overflow: hidden;
+			line-height: 1;
+			font-size: 100px;
+			text-align: center;
+			margin-bottom: 5px;
+		}
+		.week-date, .week-year {
+			font-size: 20px;
+			background-color: rgba(255,255,255,0.1);
+			text-align: center;
+		}
+		.week-info {
+			margin-top: 10px;
+			font-size: 12px;
+		}
+	}
+	.week-bounce-in {
+		animation-name: weekBounceIn;
+		animation-duration: 0.25s;
+		animation-fill-mode: both;
+	}
+}

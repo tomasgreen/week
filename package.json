@@ -1,0 +1,27 @@
+{
+	"name": "weeks",
+	"version": "0.1.0",
+	"private": true,
+	"author": "Tomas Green",
+	"license": "MIT",
+	"dependencies": {
+		"bytes": "*",
+		"express": "*",
+		"moment": "*",
+		"morgan": "*",
+		"colors": "*",
+		"uuid": "*",
+		"yargs": "*",
+		"gulp": "*",
+		"gulp-watch": "*",
+		"gulp-postcss": "*",
+		"gulp-rename": "*",
+		"gulp-less": "*",
+		"gulp-concat": "*",
+		"gulp-minify-css": "*",
+		"gulp-rename": "*",
+		"gulp-streamify": "*",
+		"gulp-uglify": "*",
+		"gulp-autoprefixer": "*"
+	}
+}
