@@ -4,7 +4,7 @@
 		_animationStartEvents = 'webkitAnimationStart mozAnimationStart msAnimationStart oAnimationStart animationstart';
 
 	function _createElement(type, attr, parent, html) {
-		var el, cls, id, arr;
+		var el, arr;
 		if (!attr) attr = {};
 		if (type.indexOf('.') !== -1) {
 			arr = type.split('.');
@@ -87,32 +87,30 @@
 		});
 	}
 
-	Date.prototype.getWeek = function() {
-		var d = new Date(this);
+	function _getWeek(dt) {
+		var d = new Date(dt);
 		d.setHours(0, 0, 0);
 		d.setDate(d.getDate() + 4 - (d.getDay() || 7));
 		var yearStart = new Date(d.getFullYear(), 0, 1);
 		return Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
 	};
 
-	Date.prototype.format = function() {
-		var string = this.getFullYear() + "-";
-		string += (this.getMonth() < 9 ? "0" + (this.getMonth() + 1) : (this.getMonth() + 1)) + "-";
-		string += (this.getDate() < 9 ? "0" + this.getDate() : this.getDate());
-		return string;
+	function _format(dt) {
+		var s = dt.getFullYear() + "-";
+		s += (dt.getMonth() < 10 ? "0" + (dt.getMonth() + 1) : (dt.getMonth() + 1)) + "-";
+		s += (dt.getDate() < 10 ? "0" + dt.getDate() : dt.getDate());
+		return s;
 	};
-	Date.prototype.setWeek = function(w, y) {
-		if (y === undefined) y = this.getFullYear();
+	function _setWeek(dt,w, y) {
+		if (y === undefined) y = dt.getFullYear();
 		var simple = new Date(y, 0, 1 + (w - 1) * 7);
 		var dow = simple.getDay();
 		var ISOweekStart = simple;
-		if (dow <= 4)
-			ISOweekStart.setDate(simple.getDate() - simple.getDay() + 1);
-		else
-			ISOweekStart.setDate(simple.getDate() + 8 - simple.getDay());
-		this.setFullYear(ISOweekStart.getFullYear());
-		this.setMonth(ISOweekStart.getMonth());
-		this.setDate(ISOweekStart.getDate());
+		if (dow <= 4) ISOweekStart.setDate(simple.getDate() - simple.getDay() + 1);
+		else ISOweekStart.setDate(simple.getDate() + 8 - simple.getDay());
+		dt.setFullYear(ISOweekStart.getFullYear());
+		dt.setMonth(ISOweekStart.getMonth());
+		dt.setDate(ISOweekStart.getDate());
 	};
 
 	/* ************************************
@@ -170,7 +168,7 @@
 		if (this.weekEl.value > 53 || this.weekEl.value < 1 || this.weekEl.lastValue == this.weekEl.value) return;
 		if (isNaN(this.opt.date)) this.opt.date = new Date();
 		this.weekEl.lastValue = this.weekEl.value;
-		this.opt.date.setWeek(parseInt(this.weekEl.value, 10), this.yearEl.value);
+		_setWeek(this.opt.date,parseInt(this.weekEl.value, 10), this.yearEl.value);
 		this.updateDate();
 		this.setSpan();
 		this.autoupdate(false);
@@ -207,17 +205,17 @@
 	};
 	Base.prototype.tick = function() {
 		var dt = new Date();
-		if (this.opt.date.format() != dt.format()) {
+		if (_format(this.opt.date) != _format(dt)) {
 			this.resetAll(dt);
 		}
 	};
 	Base.prototype.setSpan = function() {
 		if (isNaN(this.opt.date)) return;
 		var start = new Date(this.opt.date);
-		start.setWeek(this.opt.date.getWeek(), this.yearEl.value);
+		_setWeek(start,_getWeek(this.opt.date), this.yearEl.value);
 		var end = new Date(start);
 		end.setDate(end.getDate() + 6);
-		var html = start.format() + ' → ' + end.format();
+		var html = _format(start) + ' → ' + _format(end);
 		if (this.infoEl.textContent != html) {
 			this.infoEl.textContent = html;
 			_animateCSS(this.infoEl, 'week-bounce-in');
@@ -227,8 +225,8 @@
 	Base.prototype.resetAll = function(dt) {
 		if (dt) this.opt.date = dt;
 		this.yearEl.value = this.yearEl.lastValue = this.opt.date.getFullYear();
-		this.weekEl.value = this.weekEl.lastValue = this.opt.date.getWeek();
-		this.dateEl.value = this.dateEl.lastValue = this.opt.date.format();
+		this.weekEl.value = this.weekEl.lastValue = _getWeek(this.opt.date);
+		this.dateEl.value = this.dateEl.lastValue = _format(this.opt.date);
 		this.setSpan();
 		_animateCSS(this.weekEl, 'week-bounce-in');
 		_animateCSS(this.yearEl, 'week-bounce-in');
@@ -236,16 +234,16 @@
 	};
 
 	Base.prototype.updateDate = function() {
-		if (isNaN(this.opt.date) || this.dateEl.lastValue == this.opt.date.format()) return;
+		if (isNaN(this.opt.date) || this.dateEl.lastValue == _format(this.opt.date)) return;
 
-		this.dateEl.value = this.dateEl.lastValue = isNaN(this.opt.date) ? '?' : this.opt.date.format();
+		this.dateEl.value = this.dateEl.lastValue = isNaN(this.opt.date) ? '?' : _format(this.opt.date);
 		_animateCSS(this.dateEl, 'week-bounce-in');
 	};
 
 	Base.prototype.updateWeek = function() {
-		if (isNaN(this.opt.date) || this.weekEl.lastValue == this.opt.date.getWeek()) return;
+		if (isNaN(this.opt.date) || this.weekEl.lastValue == _getWeek(this.opt.date)) return;
 
-		this.weekEl.value = this.weekEl.lastValue = isNaN(this.opt.date) ? '?' : this.opt.date.getWeek();
+		this.weekEl.value = this.weekEl.lastValue = isNaN(this.opt.date) ? '?' : _getWeek(this.opt.date);
 		_animateCSS(this.weekEl, 'week-bounce-in');
 	};
 
