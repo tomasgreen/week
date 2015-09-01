@@ -1,7 +1,6 @@
 var gulp = require('gulp'),
 	rename = require('gulp-rename'),
 	streamify = require('gulp-streamify'),
-	argv = require('yargs').argv,
 	less = require('gulp-less'),
 	watch = require('gulp-watch'),
 	uglify = require('gulp-uglify'),

@@ -93,14 +93,14 @@
 		d.setDate(d.getDate() + 4 - (d.getDay() || 7));
 		var yearStart = new Date(d.getFullYear(), 0, 1);
 		return Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
-	};
+	}
 
 	function _format(dt) {
 		var s = dt.getFullYear() + "-";
 		s += (dt.getMonth() < 10 ? "0" + (dt.getMonth() + 1) : (dt.getMonth() + 1)) + "-";
 		s += (dt.getDate() < 10 ? "0" + dt.getDate() : dt.getDate());
 		return s;
-	};
+	}
 	function _setWeek(dt,w, y) {
 		if (y === undefined) y = dt.getFullYear();
 		var simple = new Date(y, 0, 1 + (w - 1) * 7);
@@ -111,7 +111,7 @@
 		dt.setFullYear(ISOweekStart.getFullYear());
 		dt.setMonth(ISOweekStart.getMonth());
 		dt.setDate(ISOweekStart.getDate());
-	};
+	}
 
 	/* ************************************
 	############## MY PLUGIN ##############
@@ -253,11 +253,11 @@
 		this.yearEl.value = this.yearEl.lastValue = this.opt.date.getFullYear();
 		_animateCSS(this.yearEl, 'week-bounce-in');
 	};
-	this.Weeks = function(el, options) {
+	this.Week = function(el, options) {
 		var instance = new Base(el, options);
 		return instance;
 	};
 
-	this.Weeks.globals = defaults;
+	this.Week.globals = defaults;
 
 }).call(this);

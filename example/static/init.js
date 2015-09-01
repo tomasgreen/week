@@ -2,7 +2,7 @@
 	'use strict';
 
 	document.addEventListener('DOMContentLoaded', function() {
-		new Weeks(document.querySelector('.weeks'));
+		new Week(document.querySelector('.week'));
 	});
 
 }).call(this); /* not added */

@@ -15,8 +15,21 @@ body,input,button {
 	font-size: 15px;
 	font-weight: 300;
 }
-.weeks {
+.week {
 	margin: 0px auto;
 	height: 100vh;
-	width: 200px;
+	width: 300px;
+	.week-content .week-week {
+		font-size: 200px;
+	}
+}
+@media (max-width: 600px) {
+	.week {
+		margin: 20px auto;
+		height: 100vh;
+		width: 200px;
+		.week-content .week-week {
+			font-size: 100px;
+		}
+	}	
 }

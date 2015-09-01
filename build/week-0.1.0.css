@@ -42,7 +42,7 @@
     transform: scale3d(1, 1, 1);
   }
 }
-.weeks {
+.week {
   box-sizing: border-box;
   width: 100%;
   display: -webkit-flex;
@@ -57,10 +57,10 @@
   background-color: #0b4046;
   color: #fff;
 }
-.weeks * {
+.week * {
   box-sizing: border-box;
 }
-.weeks input {
+.week input {
   box-sizing: border-box;
   border-radius: 0;
   width: 100%;
@@ -71,14 +71,14 @@
   color: #fff;
   line-height: 1;
 }
-.weeks .week-content {
+.week .week-content {
   width: 100%;
   -webkit-flex: none;
   -ms-flex: none;
   flex: none;
   text-align: center;
 }
-.weeks .week-content .week-week {
+.week .week-content .week-week {
   display: block;
   box-sizing: border-box;
   margin: 0;
@@ -89,17 +89,17 @@
   text-align: center;
   margin-bottom: 5px;
 }
-.weeks .week-content .week-date,
-.weeks .week-content .week-year {
+.week .week-content .week-date,
+.week .week-content .week-year {
   font-size: 20px;
   background-color: rgba(255, 255, 255, 0.1);
   text-align: center;
 }
-.weeks .week-content .week-info {
+.week .week-content .week-info {
   margin-top: 10px;
   font-size: 12px;
 }
-.weeks .week-bounce-in {
+.week .week-bounce-in {
   -webkit-animation-name: weekBounceIn;
   animation-name: weekBounceIn;
   -webkit-animation-duration: 0.25s;
