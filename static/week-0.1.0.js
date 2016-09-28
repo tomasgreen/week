@@ -97,8 +97,8 @@
 
 	function _format(dt) {
 		var s = dt.getFullYear() + "-";
-		s += (dt.getMonth() < 10 ? "0" + (dt.getMonth() + 1) : (dt.getMonth() + 1)) + "-";
-		s += (dt.getDate() < 10 ? "0" + dt.getDate() : dt.getDate());
+		s += (dt.getMonth() < 9 ? "0" + (dt.getMonth() + 1) : (dt.getMonth() + 1)) + "-";
+		s += (dt.getDate() < 9 ? "0" + dt.getDate() : dt.getDate());
 		return s;
 	}
 	function _setWeek(dt,w, y) {
